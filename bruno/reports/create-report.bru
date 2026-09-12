@@ -1,0 +1,20 @@
+meta {
+  name: Create Report
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/reports
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "address": "Av. Hidalgo 450, esquina con Calle Morelos, Col. Centro",
+    "description": "Se observa un chorro de agua que emerge del pavimento cerca de la banqueta, con un flujo considerable. El agua está encharcando la calle.",
+    "severity": "high",
+    "reporterPhone": "5512345678"
+  }
+}

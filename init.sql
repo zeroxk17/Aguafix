@@ -1,0 +1,3 @@
+-- La base de datos ya es creada por la variable POSTGRES_DB en compose.yaml.
+-- Este archivo existe para inicializaciones adicionales si se requieren.
+-- Las tablas se crean a través de migraciones de TypeORM (npm run typeorm:run).

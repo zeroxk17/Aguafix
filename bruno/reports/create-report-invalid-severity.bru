@@ -1,0 +1,20 @@
+meta {
+  name: Create Report - Invalid Severity
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/reports
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "address": "Calle Reforma 100",
+    "description": "Fuga pequeña en la tubería visible.",
+    "severity": "critical",
+    "reporterPhone": "5599887766"
+  }
+}
