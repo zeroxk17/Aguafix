@@ -21,6 +21,9 @@ services:
       - '3000:3000'
     env_file:
       - .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
     depends_on:
       - postgres
 

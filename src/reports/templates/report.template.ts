@@ -38,7 +38,7 @@ export function generateReportTemplate(
           <tr>
             <td style="background-color:#1a73e8;padding:24px 32px;">
               <h1 style="margin:0;color:#ffffff;font-size:22px;">
-                &#128167; Nuevo Reporte de Fuga de Agua
+                &#128167; AguaFix — Nuevo Reporte de Fuga
               </h1>
               <p style="margin:6px 0 0;color:#d0e8ff;font-size:13px;">${now}</p>
             </td>
