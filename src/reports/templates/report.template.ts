@@ -99,7 +99,7 @@ export function generateReportTemplate(
           <tr>
             <td style="background-color:#f4f6f8;padding:16px 32px;text-align:center;">
               <p style="margin:0;font-size:12px;color:#aaa;">
-                Este correo fue generado automáticamente por el sistema de reportes municipales.
+                Este fue un correo generado automáticamente por el sistema de reportes municipales.
               </p>
             </td>
           </tr>
