@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Report } from './entities/report.entity';
 import { CreateReportDto } from './dtos/CreateReportDto';
 import { EmailService } from '../email/email.service';
+import { StorageService } from '../storage/storage.service';
 import { generateReportTemplate } from './templates/report.template';
 import { envs } from '../config/envs';
 
@@ -13,13 +14,19 @@ export class ReportsService {
     @InjectRepository(Report)
     private readonly reportRepository: Repository<Report>,
     private readonly emailService: EmailService,
+    private readonly storageService: StorageService,
   ) {}
 
-  async create(createReportDto: CreateReportDto): Promise<Report> {
-    const report = this.reportRepository.create(createReportDto);
+  async create(
+    createReportDto: CreateReportDto,
+    photo: Express.Multer.File,
+  ): Promise<Report> {
+    const photoUrl = await this.storageService.uploadFile(photo, 'reports/');
+
+    const report = this.reportRepository.create({ ...createReportDto, photoUrl });
     const saved = await this.reportRepository.save(report);
 
-    const html = generateReportTemplate(createReportDto);
+    const html = generateReportTemplate(createReportDto, photoUrl);
     await this.emailService.sendEmail(
       envs.MAINTENANCE_EMAIL,
       `[Fuga de Agua] Nuevo reporte - Severidad: ${createReportDto.severity.toUpperCase()}`,

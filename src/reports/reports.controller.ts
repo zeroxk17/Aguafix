@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dtos/CreateReportDto';
 
@@ -7,8 +17,13 @@ export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Post()
-  create(@Body() createReportDto: CreateReportDto) {
-    return this.reportsService.create(createReportDto);
+  @UseInterceptors(FileInterceptor('photo', { storage: memoryStorage() }))
+  create(
+    @Body() createReportDto: CreateReportDto,
+    @UploadedFile() photo: Express.Multer.File,
+  ) {
+    if (!photo) throw new BadRequestException('La foto es obligatoria');
+    return this.reportsService.create(createReportDto, photo);
   }
 
   @Get()

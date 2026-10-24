@@ -13,5 +13,16 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  api:
+    image: kered17/water-leaks-api:latest
+    container_name: water-leaks-api
+    restart: always
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
 volumes:
   postgres_data:

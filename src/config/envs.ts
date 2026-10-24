@@ -17,4 +17,9 @@ export const envs = {
   MAILER_FROM: get('MAILER_FROM').required().asString(),
 
   MAINTENANCE_EMAIL: get('MAINTENANCE_EMAIL').required().asString(),
+
+  AWS_ACCESS_KEY_ID: get('AWS_ACCESS_KEY_ID').required().asString(),
+  AWS_SECRET_ACCESS_KEY: get('AWS_SECRET_ACCESS_KEY').required().asString(),
+  AWS_REGION: get('AWS_REGION').required().asString(),
+  AWS_S3_BUCKET: get('AWS_S3_BUCKET').required().asString(),
 };

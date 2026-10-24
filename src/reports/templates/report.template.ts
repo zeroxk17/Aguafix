@@ -12,7 +12,10 @@ const severityColor: Record<string, string> = {
   high: '#e74c3c',
 };
 
-export function generateReportTemplate(dto: CreateReportDto): string {
+export function generateReportTemplate(
+  dto: CreateReportDto,
+  photoUrl: string,
+): string {
   const label = severityLabel[dto.severity] ?? dto.severity;
   const color = severityColor[dto.severity] ?? '#555';
   const now = new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' });
@@ -75,9 +78,16 @@ export function generateReportTemplate(dto: CreateReportDto): string {
                 </tr>
 
                 <tr>
-                  <td style="padding:10px 0;">
+                  <td style="padding:10px 0;border-bottom:1px solid #eee;">
                     <span style="display:block;font-size:11px;color:#999;text-transform:uppercase;letter-spacing:0.5px;">Teléfono de contacto</span>
                     <span style="display:block;margin-top:4px;font-size:15px;color:#222;">${dto.reporterPhone}</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px 0;">
+                    <span style="display:block;font-size:11px;color:#999;text-transform:uppercase;letter-spacing:0.5px;">Foto de la fuga</span>
+                    <img src="${photoUrl}" alt="Foto de la fuga" style="margin-top:8px;max-width:100%;border-radius:6px;border:1px solid #eee;" />
                   </td>
                 </tr>
 
